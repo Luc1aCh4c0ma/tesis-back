@@ -17,15 +17,14 @@ import * as config from './config';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: config.DB_HOST,
-      port:+ config.DB_PORT,
-      username: config.DB_USER,
-      password: config.DB_PASSWORD,
-      database: config.DB_NAME,
+      host: 'junction.proxy.rlwy.net', // Host de la base de datos
+      port: 47158, // Puerto
+      username: 'root', // Usuario
+      password: 'ewCoerLXrkJmesqpqdfqlNMInrgHfRpI', // Contraseña
+      database: 'railway', // Nombre de la base de datos
       autoLoadEntities: true,
-      synchronize: true, // ⚠️ Usa solo en desarrollo
+      synchronize: true, // Solo para desarrollo. Desactívalo en producción.
       connectTimeout: 30000, // Tiempo de espera opcional (30 segundos)
-
     }),
     AuthModule,
     MesaModule,
