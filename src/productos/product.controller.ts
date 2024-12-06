@@ -47,7 +47,7 @@ export class ProductosController {
       throw new NotFoundException(`Categoría con ID ${crearProductoDto.categoriaId} no encontrada`);
     }
 
-    const imagePath = file ? `http://localhost:3000/uploads/${file.filename}` : null;
+    const imagePath = file ? `https://tesis-back-production-8e0c.up.railway.app/uploads/${file.filename}` : null;
     return this.productosService.create({ ...crearProductoDto, imagen: imagePath });
   }
 
