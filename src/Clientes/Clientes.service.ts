@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { MesaService } from '../mesas/mesa.service'; // Asegúrate de que el path sea correcto
 import { CreateClienteDto } from './dto/create-cliente.dto';
-import { Cliente } from './entities/cliente.entity';
+import { Cliente } from './entities/Cliente.entity';
 
 @Injectable()
 export class ClientesService {
