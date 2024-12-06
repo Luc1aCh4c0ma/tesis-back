@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ClientesService } from './clientes.service';
-import { ClientesController } from './clientes.controller';
+import { ClientesService } from './Clientes.service';
+import { ClientesController } from './Clientes.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Cliente } from './entities/cliente.entity';
+import { Cliente } from './entities/Cliente.entity';
 import { MesaModule } from '../mesas/mesa.module'; // Importa MesaModule
 
 @Module({

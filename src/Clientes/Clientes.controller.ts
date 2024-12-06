@@ -1,7 +1,6 @@
 import { Controller, Post, Body, Get, Param, Patch } from '@nestjs/common';
-import { ClientesService } from './clientes.service';
-
-import { Cliente } from './entities/cliente.entity';
+import { ClientesService } from './Clientes.service';
+import { Cliente } from './entities/Cliente.entity';
 import { MesaService } from 'src/mesas/mesa.service';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 
