@@ -24,6 +24,8 @@ import * as config from './config';
       database: config.DB_NAME,
       autoLoadEntities: true,
       synchronize: true, // ⚠️ Usa solo en desarrollo
+      connectTimeout: 30000, // Tiempo de espera opcional (30 segundos)
+
     }),
     AuthModule,
     MesaModule,
