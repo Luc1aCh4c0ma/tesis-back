@@ -14,7 +14,7 @@ async function bootstrap() {
 
   // Habilitar CORS
   app.enableCors({
-    origin: '*', // Asegúrate de que este es el puerto correcto de tu frontend
+    origin: ['https://cafeteriasosneado.vercel.app'], // Asegúrate de que este es el puerto correcto de tu frontend
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     allowedHeaders: 'Content-Type, Authorization', // Cabeceras que se permiten
