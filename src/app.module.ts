@@ -10,16 +10,18 @@ import { ClienteModule } from './Clientes/Clientes.module';
 import { MozosModule } from './mozos/mozos.module';
 import { PedidosModule } from './pedido/pedido.module';
 import { TicketModule } from './ticket/ticket.module';
+import * as config from './config';
+
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.DB_HOST,
-      port:+ process.env.DB_PORT,
-      username: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
+      host: config.DB_HOST,
+      port:+ config.DB_PORT,
+      username: config.DB_USER,
+      password: config.DB_PASSWORD,
+      database: config.DB_NAME,
       autoLoadEntities: true,
       synchronize: true, // ⚠️ Usa solo en desarrollo
     }),
