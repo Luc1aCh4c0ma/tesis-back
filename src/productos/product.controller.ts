@@ -18,7 +18,6 @@ import { extname } from 'path';
 
 import { CrearProductoDto } from './dto/create-product.dto';
 import { ProductosService } from './product.service';
-import { ActualizarProductoDto } from './dto/update-product.dto';
 
 @Controller('productos')
 export class ProductosController {
@@ -74,11 +73,6 @@ async actualizarDisponibilidad(
     throw new NotFoundException(`Producto con ID ${id} no encontrado`);
   }
   return producto; // Asegúrate de retornar el producto actualizado.
-}
-
-@Put(':id')
-async actualizarProducto(@Param('id') id: number, @Body() actualizarProductoDto: ActualizarProductoDto) {
-  return this.productosService.actualizarProducto(id, actualizarProductoDto);
 }
 
 
