@@ -11,6 +11,7 @@ import {
   UploadedFile,
   UseInterceptors,
   NotFoundException,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
@@ -18,6 +19,7 @@ import { extname } from 'path';
 
 import { CrearProductoDto } from './dto/create-product.dto';
 import { ProductosService } from './product.service';
+import { ActualizarProductoDto } from './dto/update-product.dto';
 
 @Controller('productos')
 export class ProductosController {
@@ -49,6 +51,38 @@ export class ProductosController {
 
     const imagePath = file ? `https://tesis-back-production-8e0c.up.railway.app/uploads/${file.filename}` : null;
     return this.productosService.create({ ...crearProductoDto, imagen: imagePath });
+  }
+
+  @Put(':id')
+  @UseInterceptors(
+    FileInterceptor('imagen', {
+      storage: diskStorage({
+        destination: './uploads',
+        filename: (req, file, callback) => {
+          const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+          callback(null, `${uniqueSuffix}${extname(file.originalname)}`);
+        },
+      }),
+    }),
+  )
+  async actualizarProducto(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() datos: ActualizarProductoDto,
+    @UploadedFile() file?: Express.Multer.File,
+  ) {
+    // Verificar si el producto existe
+    const producto = await this.productosService.findOne(id);
+    if (!producto) {
+      throw new NotFoundException(`Producto con ID ${id} no encontrado`);
+    }
+
+    // Actualizar la ruta de la imagen si se proporciona un archivo
+    const updatedData = { ...datos };
+    if (file) {
+      updatedData.imagen = `https://tesis-back-production-8e0c.up.railway.app/uploads/${file.filename}`;
+    }
+
+    return this.productosService.actualizarProducto(id, updatedData);
   }
 
   @Get()
